@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+/* Google Fonts import */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito:wght@400;700&display=swap");
+
+/* Reboot styles */
+
+$turquoise: #44ddd0;
+$green: #27d7a1;
+$light-green: #45f690;
+$dark-green: #006450;
+
+$light: #f8f8f8;
+
+/*Default Bulma styles*/
+$family-sans-serif: "Nunito", sans-serif;
+
+$primary: $green;
+$link: $light-green;
+
+/*Update some Bulma styles*/
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+/*Set some global styles*/
+html {
+  background-color: $turquoise;
+  background-image: linear-gradient(0deg, $turquoise 0%, $green 100%);
+}
+
+html,
+body {
+  height: 100%;
+}
