@@ -22,21 +22,86 @@
         </div>
         <!-- task list -->
         <div class="task-list has-background-light">
-            <h1 class="title has-text-primary">
-                Tasks
-            </h1>
+            <div class="top-bar">
+                <h1 class="title has-text-primary">
+                    Tasks
+                </h1>
+
+                <div class="dropdown is-hoverable is-right">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span class="icon is-small">
+                                <i class="fas fa-cog" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                        <div class="dropdown-content">
+                            <a href="#" class="dropdown-item">
+                                Edit
+                            </a>
+                            <a href="#" class="dropdown-item has-text-danger">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Tasks -->
             <div class="task is-complete">
-                <p>This is something I have to do</p>
+                <div class="task-text">
+                    <p>This is something I have to do</p>
+                </div>
+                <div class="task-buttons">
+                    <button class="button is-danger is-small" style="margin-right: 10px;">
+                        <div class="icon">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </button>
+                    <button class="button is-small">
+                        <div class="icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                    </button>
+                </div>
             </div>
             <div class="task">
-                <p>This is something I have to do</p>
+                <div class="task-text">
+                    <p>This is something I have to do</p>
+                </div>
+                <div class="task-buttons">
+                    <button class="button is-danger is-small" style="margin-right: 10px;">
+                        <div class="icon">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </button>
+                    <button class="button is-small">
+                        <div class="icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                    </button>
+                </div>
             </div>
             <div class="task">
-                <p>This is something I have to do</p>
+                <div class="task-text">
+                    <p>This is something I have to do</p>
+                </div>
+                <div class="task-buttons">
+                    <button class="button is-danger is-small" style="margin-right: 10px;">
+                        <div class="icon">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </button>
+                    <button class="button is-small">
+                        <div class="icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                    </button>
+                </div>
             </div>
             <!-- Add new task button -->
-            <button class="button is-primary has-text-white">
+            <button class="button circle-button is-primary has-text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
                     <path d="M0 0h24v24H0V0z" fill="none" />
                     <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" /></svg>
