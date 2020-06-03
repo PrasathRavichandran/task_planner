@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "A backend for the task planner application.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev":"nodemon app"
+  },
+  "author": "Prasath Ravichandran",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^4.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
