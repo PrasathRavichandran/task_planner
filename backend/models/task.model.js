@@ -12,8 +12,13 @@ const taskSchema = new Schema({
     type: mongoose.Types.ObjectId,
     required: true,
   },
+  isComplete: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
 });
 
 const Task = mongoose.model("tasks", taskSchema);
 
-module.exports = {Task};
+module.exports = { Task };

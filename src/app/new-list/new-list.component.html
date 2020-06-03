@@ -4,10 +4,11 @@
             Create a new list
         </h1>
         <!-- Form input -->
-        <input class="input has-background-light is-medium" type="text" placeholder="Enter a list name...">
+        <input class="input has-background-light is-medium" type="text" name="title" #listTitle ngModel
+            placeholder="Enter a list name...">
         <div class="buttons is-right">
-            <button class="button is-medium">Cancel</button>
-            <a class="button is-primary has-text-white is-medium">Create</a>
+            <button class="button is-medium" routerLink="../">Cancel</button>
+            <a class="button is-primary has-text-white is-medium" (click)="createNewList(listTitle)">Create</a>
         </div>
     </div>
 </div>

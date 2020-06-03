@@ -1,14 +1,14 @@
-
 <div class="centered-container">
     <div class="modal-box">
         <h1 class="title">
             Create a new Task
         </h1>
         <!-- Form input -->
-        <input class="input has-background-light is-medium" type="text" placeholder="Enter a task name...">
+        <input class="input has-background-light is-medium" type="text" name="task" #taskTitle ngModel
+            placeholder="Enter a task name...">
         <div class="buttons is-right">
-            <button class="button is-medium">Cancel</button>
-            <a class="button is-primary has-text-white is-medium">Create</a>
+            <button class="button is-medium" [routerLink]="['/lists',listId]">Cancel</button>
+            <a class="button is-primary has-text-white is-medium" (click)="createNewTask(taskTitle)">Create</a>
         </div>
     </div>
 </div>
