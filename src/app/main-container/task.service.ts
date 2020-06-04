@@ -17,13 +17,18 @@ export class TaskService {
   }
 
   getTask(listId) {
-    if(listId)
-    return this.webRequest.GET(`lists/${listId}/tasks`);
+    if (listId)
+      return this.webRequest.GET(`lists/${listId}/tasks`);
   }
 
   postTask(payload, listId) {
     return this.webRequest.POST(`lists/${listId}/task`, payload);
   }
+
+  patchTask(payload, taskId, listId) {
+    return this.webRequest.PATCH(`lists/${listId}/task/${taskId}`, payload);
+  }
+
 
 }
 

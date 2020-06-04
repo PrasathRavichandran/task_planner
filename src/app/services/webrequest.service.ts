@@ -18,7 +18,7 @@ export class WebrequestService {
   }
 
   PATCH(uri: string, payload: Object) {
-    return this.http.patch(`${this.URL}/${uri}`, payload);
+    return this.http.patch(`${this.URL}/${uri}`, payload, { responseType: 'text' });
   }
 
   DELETE(uri: string) {

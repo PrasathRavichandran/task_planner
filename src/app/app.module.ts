@@ -10,14 +10,17 @@ import { NewListComponent } from './new-list/new-list.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { UpdateListTaskComponent } from './update-list-task/update-list-task.component';
 
 const AppRoutes: Routes = [
   { path: '', redirectTo: '/lists', pathMatch: 'full' },
   { path: 'lists', component: MainContainerComponent },
   { path: 'lists/:listId', component: MainContainerComponent },
-  
+
   { path: 'new-list', component: NewListComponent },
   { path: 'new-task/:listId', component: NewTaskComponent },
+
+  { path: 'update-task/:status/:listId/:taskId', component: UpdateListTaskComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent }
 ]
@@ -28,7 +31,8 @@ const AppRoutes: Routes = [
     NewListComponent,
     NewTaskComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    UpdateListTaskComponent
   ],
   imports: [
     BrowserModule,

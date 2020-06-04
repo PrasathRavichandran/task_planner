@@ -45,16 +45,16 @@
 
             <!-- Tasks -->
             <div class="task" [ngClass]="{'is-complete':task.isComplete === true}" *ngFor="let task of tasks">
-                <div class="task-text">
+                <div class="task-text" (click)="updateTaskCompletion(task)">
                     <p>{{task.title}}</p>
                 </div>
-                <div class="task-buttons">
+                <div class="task-buttons" *ngIf="!task.isComplete">
                     <button class="button is-danger is-small" style="margin-right: 10px;">
                         <div class="icon">
                             <i class="fas fa-trash"></i>
                         </div>
                     </button>
-                    <button class="button is-small">
+                    <button class="button is-small" [routerLink]="['/update-task','edit-task',listId,task._id]">
                         <div class="icon">
                             <i class="fas fa-edit"></i>
                         </div>

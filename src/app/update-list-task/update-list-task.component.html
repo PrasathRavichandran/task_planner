@@ -1,0 +1,14 @@
+<div class="centered-container">
+    <div class="modal-box">
+        <h1 class="title">
+            Edit a {{toggleText}}
+        </h1>
+        <!-- Form input -->
+        <input class="input has-background-light is-medium" type="text" name="task" #taskTitle ngModel
+            placeholder="Enter a updated task name...">
+        <div class="buttons is-right">
+            <button class="button is-medium" [routerLink]="['/lists',listId]">Cancel</button>
+            <a class="button is-primary has-text-white is-medium" (click)="updateCurrentTask(taskTitle)">Update</a>
+        </div>
+    </div>
+</div>
