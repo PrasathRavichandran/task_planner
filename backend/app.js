@@ -5,7 +5,7 @@ const chalk = require("chalk");
 const app = express();
 const port = 4000;
 
-const { List, Task } = require("./models");
+const { List, Task, User } = require("./models");
 const { mongoose } = require("./db/dbconfig");
 
 /**
@@ -19,7 +19,10 @@ app.use(bodyParser.json());
  */
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -126,6 +129,60 @@ app.delete("/lists/:listId/task/:taskId", (req, res) => {
 });
 
 /***************************************************************** */
+
+/** USER AUTHENTICATION */
+/** SIGN UP NEW USER - /user */
+app.post("/user", (req, res) => {
+  const newUser = new User(req.body);
+  newUser.save().then((userResponse) => {
+    // create a session by sending refreshToken
+    return newUser
+      .createSession()
+      .then((refreshToken) => {
+        return newUser.generateAccessToken().then((accessToken) => {
+          return { accessToken, refreshToken };
+        });
+      })
+      .then((authTokens) => {
+        res
+          .header("x-access-token", authTokens.accessToken)
+          .header("x-refresh-token", authTokens.refreshToken)
+          .send(userResponse);
+      })
+      .catch((e) => {
+        res.status(400).send(e);
+      });
+  });
+});
+
+/** SIGN IN USER - /user/login */
+app.post("/user/login", (req, res) => {
+  let email = req.body.email;
+  let password = req.body.password;
+  User.findByCredentials(email, password)
+    .then((user) => {
+      // create a session by sending refreshToken
+      return user
+        .createSession()
+        .then((refreshToken) => {
+          return user.generateAccessToken().then((accessToken) => {
+            return { accessToken, refreshToken };
+          });
+        })
+        .then((authTokens) => {
+          res
+            .header("x-access-token", authTokens.accessToken)
+            .header("x-refresh-token", authTokens.refreshToken)
+            .send(user);
+        })
+        .catch((e) => {
+          res.status(400).send(e);
+        });
+    })
+    .catch((e) => {
+      res.status(401).send(e);
+    });
+});
 
 /**
  * Server connection
