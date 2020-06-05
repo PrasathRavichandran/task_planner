@@ -103,7 +103,7 @@ userSchema.statics.findByCredentials = function (email, password) {
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) resolve(user);
         else {
-          reject();
+          reject('Invalid password!');
         }
       });
     });
@@ -123,6 +123,7 @@ userSchema.statics.hasRefreshTokenExpires = (expiresAt) => {
 /** Middleware **/
 /** Hash the password, before storing to the database **/
 userSchema.pre("save", function (next) {
+  let user = this;
   if (user.isModified("password")) {
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(user.password, salt, function (err, hash) {
