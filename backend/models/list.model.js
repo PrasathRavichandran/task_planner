@@ -8,6 +8,10 @@ const listSchema = new Schema({
     minlength: 3,
     trim: true,
   },
+  _userId: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+  },
 });
 
 const List = mongoose.model("lists", listSchema);

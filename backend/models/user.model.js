@@ -94,6 +94,10 @@ userSchema.statics.findByIdandToken = function (_id, token) {
   return User.findOne({ _id, "session.token": token });
 };
 
+userSchema.statics.JWTSecretKey = function () {
+  return jwtsecret;
+};
+
 userSchema.statics.findByCredentials = function (email, password) {
   let User = this;
   return User.findOne({ email }).then((user) => {
@@ -103,7 +107,7 @@ userSchema.statics.findByCredentials = function (email, password) {
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) resolve(user);
         else {
-          reject('Invalid password!');
+          reject("Invalid password!");
         }
       });
     });
@@ -156,8 +160,8 @@ let saveSessionToDatabase = (user, refreshToken) => {
 /** Generate expires at time **/
 let generateExpiresAttime = function () {
   let dateUntilExpires = "10";
-  let secondUntilExpires = ((dateUntilExpires * 24) * 60) * 60;
-  return ((Date.now() / 1000) + secondUntilExpires);
+  let secondUntilExpires = dateUntilExpires * 24 * 60 * 60;
+  return Date.now() / 1000 + secondUntilExpires;
 };
 
 const User = mongoose.model("users", userSchema);
