@@ -66,6 +66,10 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header(
+    "Access-Control-Expose-Headers",
+    "x-access-token, x-refresh-token"
+  );
   next();
 });
 
@@ -225,11 +229,14 @@ app.post("/user/login", (req, res) => {
 
 /** generate and return access token **/
 app.get("/user/me/access-token", verifyAuthtoken, (req, res) => {
-  req.userObject.generateAccessToken().then((accessToken) => {
-    res.header("x-access-token", accessToken).send({ accessToken });
-  }).catch(e=>{
-    res.status(400).send(e);
-  })
+  req.userObject
+    .generateAccessToken()
+    .then((accessToken) => {
+      res.header("x-access-token", accessToken).send({ accessToken });
+    })
+    .catch((e) => {
+      res.status(400).send(e);
+    });
 });
 /**
  * Server connection
