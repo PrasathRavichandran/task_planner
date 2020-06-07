@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TaskService } from './task.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-main-container',
@@ -14,18 +15,20 @@ export class MainContainerComponent implements OnInit {
   tasks = [];
 
   listId = '';
+  isListIdFound: boolean = false;
 
-  constructor(private taskService: TaskService, private route: ActivatedRoute) { }
+  constructor(private taskService: TaskService, private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
     this.route.params.subscribe(({ listId }: Params) => {
       this.listId = listId;
-      if (this.listId)
+      if (this.listId) {
+        this.isListIdFound = true;
         this.taskService.getTask(this.listId).subscribe((TaskData: []) => {
           this.tasks = TaskData;
         })
-
+      }
     })
 
     this.taskService.getList().subscribe((ListData: []) => {
@@ -44,5 +47,9 @@ export class MainContainerComponent implements OnInit {
   }
 
 
+  handleLogout() {
+    this.authService.onLogout();
+    this.router.navigate(['/login']);
+  }
 
 }

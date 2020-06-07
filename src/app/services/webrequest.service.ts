@@ -25,4 +25,12 @@ export class WebrequestService {
     return this.http.delete(`${this.URL}/${uri}`);
   }
 
+  login(email: string, password: string) {
+    return this.http.post(`${this.URL}/user/login`, { email, password }, { observe: 'response' });
+  }
+
+  signup(email: string, password: string) {
+    return this.http.post(`${this.URL}/user`, { email, password }, { observe: 'response' });
+  }
+
 }
