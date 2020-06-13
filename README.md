@@ -19,7 +19,7 @@ This project is developed by using MEAN (MongoDB, express.js, Angular, Node.js).
 - **N**ode.js: JavaScript runtime environment
 
 ## Live Demo
-
+This project is deployed in [Heroku](https://www.heroku.com/). Please visit (https://task-planner-application.herokuapp.com/) or click [LIVE DEMO](https://task-planner-application.herokuapp.com/) to preview the application.
 ## Wireframe
 I used [Adobe XD](https://www.adobe.com/in/products/xd.html) to design this application wireframe.
 
