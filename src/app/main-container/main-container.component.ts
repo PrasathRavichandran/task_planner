@@ -25,14 +25,22 @@ export class MainContainerComponent implements OnInit {
       this.listId = listId;
       if (this.listId) {
         this.isListIdFound = true;
-        this.taskService.getTask(this.listId).subscribe((TaskData: []) => {
-          this.tasks = TaskData;
-        })
+        this.getTask(this.listId);
       }
     })
 
+    this.getList();
+  }
+
+  getList() {
     this.taskService.getList().subscribe((ListData: []) => {
       this.lists = ListData
+    })
+  }
+
+  getTask(listId) {
+    this.taskService.getTask(listId).subscribe((TaskData: []) => {
+      this.tasks = TaskData;
     })
   }
 
@@ -50,6 +58,33 @@ export class MainContainerComponent implements OnInit {
   handleLogout() {
     this.authService.onLogout();
     this.router.navigate(['/login']);
+  }
+
+  onDeleteTask(taskId) {
+    this.taskService.deleteTask(this.listId, taskId)
+      .subscribe(deletedTask => {
+        if (deletedTask)
+          this.getTask(this.listId);
+      });
+  }
+
+
+  onDeleteList() {
+    this.taskService.deleteList(this.listId)
+      .subscribe((deletedList: any) => {
+        if (deletedList) {
+          let deletedListIndex = this.lists.findIndex((list) => list._id == deletedList._id);
+          if (deletedListIndex) {
+            this.router.navigate([`lists/${this.lists[deletedListIndex - 1]._id}`]);
+          } else if (deletedListIndex === 0 && !this.lists.length) {
+            this.router.navigate([`lists/${this.lists[deletedListIndex + 1]._id}`]);
+          }
+          else {
+            this.router.navigate(['lists']);
+          }
+          this.getList();
+        }
+      })
   }
 
 }

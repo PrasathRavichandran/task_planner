@@ -5,6 +5,13 @@
             <h1 class="title has-text-primary">
                 Lists
             </h1>
+            <!-- no task error -->
+            <div class="error" *ngIf="!lists.length">
+                <div class="text-center" style="text-align:center;">
+                    <h4 class="subtitle">No Lists!</h4>
+                </div>
+            </div>
+
             <!-- List menu -->
             <div class="list-menu">
                 <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists',list._id]"
@@ -36,7 +43,7 @@
                                 <a href="#" class="dropdown-item">
                                     Edit List
                                 </a>
-                                <a href="#" class="dropdown-item has-text-danger">
+                                <a (click)="onDeleteList()" class="dropdown-item has-text-danger">
                                     Delete List
                                 </a>
                             </div>
@@ -48,6 +55,12 @@
                         </span>
                     </button>
                 </div>
+                <!-- no task error -->
+                <div class="error" *ngIf="!tasks.length">
+                    <div class="text-center" style="text-align:center;">
+                        <h4 class="subtitle">No Tasks!</h4>
+                    </div>
+                </div>
 
                 <!-- Tasks -->
                 <div class="task" [ngClass]="{'is-complete':task.isComplete === true}" *ngFor="let task of tasks">
@@ -55,12 +68,13 @@
                         <p>{{task.title}}</p>
                     </div>
                     <div class="task-buttons" *ngIf="!task.isComplete">
-                        <button class="button is-danger is-small" style="margin-right: 10px;">
+                        <button class="button is-danger is-small" (click)="onDeleteTask(task._id)"
+                            style="margin-right: 10px;">
                             <div class="icon">
                                 <i class="fas fa-trash"></i>
                             </div>
                         </button>
-                        <button class="button is-small" [routerLink]="['/update-task','edit-task',listId,task._id]">
+                        <button class="button is-small" [routerLink]="['/update-task','edit-task',listId, task._id]">
                             <div class="icon">
                                 <i class="fas fa-edit"></i>
                             </div>
@@ -69,7 +83,8 @@
                 </div>
 
                 <!-- Add new task button -->
-                <button class="button circle-button is-primary has-text-white" [routerLink]="['/new-task',listId]" *ngIf="isListIdFound">
+                <button class="button circle-button is-primary has-text-white" [routerLink]="['/new-task',listId]"
+                    *ngIf="isListIdFound">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" /></svg>
@@ -77,8 +92,14 @@
             </div>
 
             <ng-template #displayError>
-                <div class="text-center" style="text-align:center;">
-                    <h1 class="subtitle">Please click "+ New List" button to add a new List.</h1>
+                <div class="top-bar">
+                    <h4 class="subtitle" style="text-align: center;">Please click New List button to add a new List.</h4>
+
+                    <button class="button is-danger is-small" style="margin-left: .5rem;" (click)="handleLogout()">
+                        <span class="icon is-small">
+                            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                        </span>
+                    </button>
                 </div>
             </ng-template>
 

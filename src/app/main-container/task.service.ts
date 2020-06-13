@@ -16,6 +16,10 @@ export class TaskService {
     return this.webRequest.GET('lists');
   }
 
+  deleteList(listId) {
+    return this.webRequest.DELETE(`list/${listId}`);
+  }
+
   getTask(listId) {
     if (listId)
       return this.webRequest.GET(`lists/${listId}/tasks`);
@@ -27,6 +31,10 @@ export class TaskService {
 
   patchTask(payload, taskId, listId) {
     return this.webRequest.PATCH(`lists/${listId}/task/${taskId}`, payload);
+  }
+
+  deleteTask(listId, taskId) {
+    return this.webRequest.DELETE(`lists/${listId}/task/${taskId}`);
   }
 
 
