@@ -38,6 +38,8 @@ Open the terminal and navigate to the backend folder in the project. Run `npm i`
 - **To run frontend:**
 Open another terminal and navigate to the project folder. Run `npm i` to install all the needed packages for the application, after the process finished. Run `ng serve` in the terminal to run the developement server of the Angular. Make sure you should install [Angular cli](https://cli.angular.io/) before running `ng serve` in the terminal. Then open browser and enter the url `http://localhost:4200` to run the application.
 ## More Updates
+The **NgRx state management** integration to this project work is going on. I will update the repository once the process completed.
+
 Follow me on [LinkedIn](https://www.linkedin.com/in/prasathravi) to get the latest update about features, code and more. Consider star the repo if you like it. 
 ## Thanks
 
